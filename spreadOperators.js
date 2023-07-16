@@ -1,4 +1,4 @@
-// // // spread operators
+// // // spread operators : ...
 
 // 1. add some data to the end
 // const arr = [4, 5];
