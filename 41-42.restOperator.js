@@ -29,7 +29,7 @@
 // const { id, ...rest } = user;
 // console.log(id, rest);
 
-// function :
+// // // // in function :// // // //
 // function sum(...args) {
 //   console.log(args);
 //   let total = 0;
