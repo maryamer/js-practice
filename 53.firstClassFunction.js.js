@@ -42,3 +42,23 @@ const newGreeting2 = (str) => (name) => console.log(str + name);
 
 const fun2 = newGreeting("maryam");
 fun2("zahra");
+
+// // HOF usage // //
+
+function Plus(arr, num, cb) {
+  const clone = [];
+  for (let item of arr) clone.push(cb(item, num));
+  console.log(clone);
+}
+Plus([2, 4, 8], 2, inc);
+Plus([2, 4, 8], 2, dec);
+
+function inc(item, num) {
+  return item + num;
+}
+function dec(item, num) {
+  return item - num;
+}
+function mul(item, num) {
+  return item * num;
+}
