@@ -90,27 +90,47 @@
 //
 
 // // sort note based on date // //
-const notes = [
-  { id: 1, title: " Note 1", createdAt: "2023-08-20T18:10:07.080Z" },
-  { id: 2, title: " Note 2", createdAt: "2021-08-20T18:10:07.080Z" },
-  { id: 3, title: " Note 3", createdAt: "2020-08-20T18:10:07.080Z" },
-  { id: 4, title: " Note 4", createdAt: "2022-08-20T18:10:07.080Z" },
-];
+// const notes = [
+//   { id: 1, title: " Note 1", createdAt: "2023-08-20T18:10:07.080Z" },
+//   { id: 2, title: " Note 2", createdAt: "2021-08-20T18:10:07.080Z" },
+//   { id: 3, title: " Note 3", createdAt: "2020-08-20T18:10:07.080Z" },
+//   { id: 4, title: " Note 4", createdAt: "2022-08-20T18:10:07.080Z" },
+// ];
+// // oldest ,newest
+// // latest,earliest
+// const sort = (sortBy = "latest", notes) => {
+//   // descending
+//   return [...notes].sort((a, b) => {
+//     const dateA = new Date(a.createdAt).getTime();
+//     const dateB = new Date(b.createdAt).getTime();
+//     //   if (dateA < dateB) return 1;
+//     //   if (dateA > dateB) return -1;
+//     // descending
+//     if (sortBy === "latest") return dateB - dateA;
+//     // ascending
+//     if (sortBy === "oldest") return dateA - dateB;
+//   });
+// };
+// console.log(sort("oldest", notes));
 
-// oldest ,newest
-// latest,earliest
+//
 
-const sort = (sortBy = "latest", notes) => {
-  // descending
-  return [...notes].sort((a, b) => {
-    const dateA = new Date(a.createdAt).getTime();
-    const dateB = new Date(b.createdAt).getTime();
-    //   if (dateA < dateB) return 1;
-    //   if (dateA > dateB) return -1;
-    // descending
-    if (sortBy === "latest") return dateB - dateA;
-    // ascending
-    if (sortBy === "oldest") return dateA - dateB;
-  });
+//
+
+//
+
+//
+
+// local date //
+// toLocalDateString()
+
+const now = new Date();
+const options = {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+  weekday: "long",
+  hour: "numeric",
 };
-console.log(sort("oldest", notes));
+console.log(now.toLocaleDateString("fa-IR", options));
+console.log(Intl.DateTimeFormat("fa-IR", options).format(now));
