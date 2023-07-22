@@ -73,32 +73,32 @@
 // map usage => transform and return new array
 // forEach usage => side effect : save to DB
 
-const users = [
-  {
-    id: 1,
-    age: 28,
-    name: "maryam",
-    isActive: true,
+// const users = [
+//   {
+//     id: 1,
+//     age: 28,
+//     name: "maryam",
+//     isActive: true,
 
-    role: "TEACHER",
-  },
-  {
-    id: 2,
-    age: 20,
-    name: "zahra",
-    isActive: false,
+//     role: "TEACHER",
+//   },
+//   {
+//     id: 2,
+//     age: 20,
+//     name: "zahra",
+//     isActive: false,
 
-    role: "ADMIN",
-  },
-  {
-    id: 3,
-    age: 22,
-    name: "sanam",
-    isActive: true,
+//     role: "ADMIN",
+//   },
+//   {
+//     id: 3,
+//     age: 22,
+//     name: "sanam",
+//     isActive: true,
 
-    role: "MANAGER",
-  },
-];
+//     role: "MANAGER",
+//   },
+// ];
 // with foreach
 // const userIds = users.forEach((user) => {
 //   userIds.push(user.id);
@@ -143,17 +143,47 @@ const users = [
 // const total = users.reduce((acc, current, index) => acc + current.id, 0);
 // console.log(total);
 //
-const products = [
-  { title: "p1", price: "88.99$", quantity: 2 },
-  { title: "p2", price: "68.99$", quantity: 2 },
-  { title: "p3", price: "558.99$", quantity: 2 },
-];
-const totalPrice = products.reduce((acc, product) => {
-  let price =
-    parseFloat(product.price.slice(0, product.price.length - 1)) *
-    product.quantity;
-  //   or
-  let price2 = parseFloat(product.price.split("$")[0]) * product.quantity;
-  return (acc += price);
+// const products = [
+//   { title: "p1", price: "88.99$", quantity: 2 },
+//   { title: "p2", price: "68.99$", quantity: 2 },
+//   { title: "p3", price: "558.99$", quantity: 2 },
+// ];
+// const totalPrice = products.reduce((acc, product) => {
+//   let price =
+//     parseFloat(product.price.slice(0, product.price.length - 1)) *
+//     product.quantity;
+//   //   or
+//   let price2 = parseFloat(product.price.split("$")[0]) * product.quantity;
+//   return (acc += price);
+// }, 0);
+// console.log(totalPrice);
+
+//
+//
+//
+//
+
+// //calc average challenge - chain method // //
+const userMarks = [9, 10, 13, 18, 20, 15, 7];
+// 1. calculate the average of marks
+// 2. calculatte the average of pased students
+// 3. shift marks based on +3 an recalculate the ave.
+// 1
+const ave = userMarks.reduce((acc, mark, index, arr) => {
+  return (acc += mark / arr.length);
 }, 0);
-console.log(totalPrice);
+console.log(ave.toFixed(2));
+// 2
+const passAve = userMarks
+  .filter((mark) => mark >= 10)
+  .reduce((acc, mark, index, arr) => {
+    return (acc += mark / arr.length);
+  }, 0);
+console.log(passAve.toFixed(1));
+// 3
+const plus3Ave = userMarks
+  .map((mark) => mark + 3)
+  .reduce((acc, mark, index, arr) => {
+    return (acc += mark / arr.length);
+  }, 0);
+console.log(plus3Ave.toFixed(2));
