@@ -62,3 +62,58 @@
 // mapData.forEach((value, key, map) => {
 //   console.log(key, value, map);
 // });
+
+//
+//
+//
+//
+
+// // transforming array : map , filter, reduce => NOT MUTATE
+//  map method // => returns new array and NOT MUTATE
+// map usage => transform and return new array
+// forEach usage => side effect : save to DB
+
+const users = [
+  {
+    id: 1,
+    age: 28,
+    name: "maryam",
+    isActive: true,
+
+    role: "TEACHER",
+  },
+  {
+    id: 2,
+    age: 20,
+    name: "zahra",
+    isActive: false,
+
+    role: "ADMIN",
+  },
+  {
+    id: 3,
+    age: 22,
+    name: "sanam",
+    isActive: true,
+
+    role: "MANAGER",
+  },
+];
+// with foreach
+// const userIds = users.forEach((user) => {
+//   userIds.push(user.id);
+// });
+const userIds = users.map(({ id }) => {
+  return { id: id };
+});
+
+// /// // challenge // /// //
+const newUsers = users.map((user) => {
+  return {
+    msg: `hi ${user.name} ,your profile is ${
+      user.isActive ? "active" : "not active"
+    } and your role is ${user.role}`,
+    ...user,
+  };
+});
+console.log(newUsers);
