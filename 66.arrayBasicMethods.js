@@ -32,14 +32,33 @@
 
 // // forEach method : loop on array,map,set
 // The forEach() method executes a provided function once for each array element.
-
-const myarr = ["records", "reactions", "necessary", "next.js", "vue js"];
-const courses = [];
 // myarr.forEach(callback function => A function to execute for each element in the array. Its return value is discarded.)
+
+// const myarr = ["records", "reactions", "necessary", "next.js", "vue js"];
+// const courses = [];
 // forEach return => undefined
-myarr.forEach((element, index, myarr) => {
-  courses.push({
-    id: index + 1,
-    title: element[0].toUpperCase() + element.toLowerCase().slice(1),
-  });
-});
+// myarr.forEach((element, index, myarr) => {
+//   courses.push({
+//     id: index + 1,
+//     title: element[0].toUpperCase() + element.toLowerCase().slice(1),
+//   });
+// });
+
+//
+//
+//
+
+// // forEach on Set and Map data structure
+// const someArr = ["records", "reactions", "necessary", "next.js", "vue js"];
+// const coursesSet = new Set(someArr);
+// coursesSet.forEach((item, key, myset) => {
+//   console.log(item, key, myset);
+// });
+//
+// const mapData = new Map([
+//   ["name", "maryam"],
+//   ["job", "developer"],
+// ]);
+// mapData.forEach((value, key, map) => {
+//   console.log(key, value, map);
+// });
