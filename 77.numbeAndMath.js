@@ -41,24 +41,45 @@
 //
 
 // // date and basic methods // //
-const now = new Date();
-console.log(now);
-const yr = now.getFullYear();
-const month = now.getMonth();
-const date = now.getDate(); //1-30
-const day = now.getDay(); // 0-6
-console.log(day);
+// const now = new Date();
+// console.log(now);
+// const yr = now.getFullYear();
+// const month = now.getMonth();
+// const date = now.getDate(); //1-30
+// const day = now.getDay(); // 0-6
+// console.log(day);
 
-console.log(now.getTime()); // 1 jun 1970 (timestamp) //** **/
-console.log(Date.now()); // 1 jun 1970 (timestamp)
-console.log(Number(now)); // 1 jun 1970 (timestamp)
-console.log(+now); // 1 jun 1970 (timestamp)
+// console.log(now.getTime()); // 1 jun 1970 (timestamp) //** **/
+// console.log(Date.now()); // 1 jun 1970 (timestamp)
+// console.log(Number(now)); // 1 jun 1970 (timestamp)
+// console.log(+now); // 1 jun 1970 (timestamp)
 
-console.log(now.toDateString());
-console.log(now.toISOString()); //** **/
-console.log(now.toLocaleDateString("fa")); //** **/
-console.log(now.toLocaleString("fa"));
-console.log(now.toLocaleString());
+// console.log(now.toDateString());
+// console.log(now.toISOString()); //** **/
+// console.log(now.toLocaleDateString("fa")); //** **/
+// console.log(now.toLocaleString("fa"));
+// console.log(now.toLocaleString());
+
+//
+
+//
+
+//
+
+//
+
+// // // calculate date diffrence challenge // //
+// // end - start => diffrence between days
+// const daysDiff = (start, end) => {
+//   const milliSec = new Date(end) - new Date(start);
+//   console.log(new Date(end) - new Date(start));
+//   const days = Math.floor(milliSec / (24 * 60 * 60 * 1000));
+//   console.log(days);
+//   return days;
+// };
+// daysDiff("7/22/2023", "7/26/2023");
+// daysDiff("2023-07-22T18:10:07.080Z", "2023-08-20T18:10:07.080Z");
+// // date-fns library
 
 //
 
@@ -68,15 +89,28 @@ console.log(now.toLocaleString());
 
 //
 
-// // calculate date diffrence challenge // //
-// end - start => diffrence between days
-const daysDiff = (start, end) => {
-  const milliSec = new Date(end) - new Date(start);
-  console.log(new Date(end) - new Date(start));
-  const days = Math.floor(milliSec / (24 * 60 * 60 * 1000));
-  console.log(days);
-  return days;
+// // sort note based on date // //
+const notes = [
+  { id: 1, title: " Note 1", createdAt: "2023-08-20T18:10:07.080Z" },
+  { id: 2, title: " Note 2", createdAt: "2021-08-20T18:10:07.080Z" },
+  { id: 3, title: " Note 3", createdAt: "2020-08-20T18:10:07.080Z" },
+  { id: 4, title: " Note 4", createdAt: "2022-08-20T18:10:07.080Z" },
+];
+
+// oldest ,newest
+// latest,earliest
+
+const sort = (sortBy = "latest", notes) => {
+  // descending
+  return [...notes].sort((a, b) => {
+    const dateA = new Date(a.createdAt).getTime();
+    const dateB = new Date(b.createdAt).getTime();
+    //   if (dateA < dateB) return 1;
+    //   if (dateA > dateB) return -1;
+    // descending
+    if (sortBy === "latest") return dateB - dateA;
+    // ascending
+    if (sortBy === "oldest") return dateA - dateB;
+  });
 };
-daysDiff("7/22/2023", "7/26/2023");
-daysDiff("2023-07-22T18:10:07.080Z", "2023-08-20T18:10:07.080Z");
-// date-fns library
+console.log(sort("oldest", notes));
