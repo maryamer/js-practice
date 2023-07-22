@@ -26,8 +26,11 @@
 // console.log(arr.at(0));
 
 //
+
 //
+
 //
+
 //
 
 // // forEach method : loop on array,map,set
@@ -45,7 +48,11 @@
 // });
 
 //
+
 //
+
+//
+
 //
 
 // // forEach on Set and Map data structure
@@ -64,8 +71,11 @@
 // });
 
 //
+
 //
+
 //
+
 //
 
 // // transforming array : map , filter, reduce => NOT MUTATE
@@ -119,8 +129,11 @@
 // console.log(newUsers);
 
 //
+
 //
+
 //
+
 //
 
 // filter method : NOT MUTATE // => satisfy on a condition ?
@@ -133,8 +146,11 @@
 // console.log(deleteUser(1));
 
 //
+
 //
+
 //
+
 //
 
 // reduce method : NOT MUTATE => the final result is a single value //
@@ -159,8 +175,11 @@
 // console.log(totalPrice);
 
 //
+
 //
+
 //
+
 //
 
 // //calc average challenge - chain method // //
@@ -189,31 +208,92 @@
 // console.log(plus3Ave.toFixed(2));
 
 //
+
 //
+
 //
+
 //
 
 // // find and findIndex method // //
 // find //
-const products = [
-  { id: 1, title: "p1", price: "88.99$", quantity: 2 },
-  { id: 2, title: "p2", price: "68.99$", quantity: 2 },
-  { id: 3, title: "p3", price: "558.99$", quantity: 2 },
-];
-const p1 = products.find((p) => p.title === "p1");
+// const products = [
+//   { id: 1, title: "p1", price: "88.99$", quantity: 2 },
+//   { id: 2, title: "p2", price: "68.99$", quantity: 2 },
+//   { id: 3, title: "p3", price: "558.99$", quantity: 2 },
+// ];
+// const p1 = products.find((p) => p.title === "p1");
 // console.log(p1);
 // findIndex => indexOf //
 // both return => index
 // indexOf => a simple value and can't get callbacck function
 // findIndex => i(()=>{...})
-products.findIndex((p) => p.title === "p1");
+// products.findIndex((p) => p.title === "p1");
 // //challenge : remove a product ? based on p.id (with findIndex and splice)
-const removeProduct = (id) => {
-  const clone = [...products];
-  const pIndex = clone.findIndex((p) => p.id === id);
-  const filtered = clone.splice(pIndex, 1);
-  //   splice MUTATEs array
-  console.log(filtered);
-  console.log(clone);
-};
-removeProduct(1);
+// const removeProduct = (id) => {
+//   const clone = [...products];
+//   const pIndex = clone.findIndex((p) => p.id === id);
+//   const filtered = clone.splice(pIndex, 1);
+//   //   splice MUTATEs array
+//   console.log(filtered);
+//   console.log(clone);
+// };
+// removeProduct(1);
+
+//
+
+//
+
+//
+
+//
+
+// // some and every methods // // => return boolean
+//some => at least one item satisfy in callback condition
+// every => all items stisfy in callback condition
+const users = [
+  {
+    id: 1,
+    age: 28,
+    name: "maryam",
+    isActive: true,
+    role: "TEACHER",
+  },
+  {
+    id: 2,
+    age: 20,
+    name: "zahra",
+    isActive: false,
+    role: "ADMIN",
+  },
+  {
+    id: 3,
+    age: 22,
+    name: "sanam",
+    isActive: true,
+    role: "MANAGER",
+  },
+];
+// some
+// const hasActive = users.some((u) => u.isActive);
+// console.log(hasActive);
+// every
+// const isAllActive = users.every((u) => u.isActive);
+// console.log(isAllActive);
+
+const enrolledCourses = [2, 3];
+const cart = [
+  { id: 1, title: "p1", price: "88.99$" },
+  { id: 2, title: "p2", price: "68.99$" },
+  { id: 3, title: "p3", price: "558.99$" },
+];
+function checkAlredyEnrolled(cart, enrolledCourses) {
+  const courseIds = cart.map((c) => c.id);
+  const found = enrolledCourses.some((id) => courseIds.includes(id));
+  // or
+  //   const found = enrolledCourses.some((id) => courseIds.indexOf(id) >= 0);
+  if (found) return "you alredy registered in one of courses";
+  return "ok";
+}
+console.log(checkAlredyEnrolled(cart, enrolledCourses));
+// checkAlredyEnrolled(cart, enrolledCourses);
