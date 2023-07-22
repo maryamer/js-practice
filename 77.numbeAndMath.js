@@ -49,10 +49,34 @@ const date = now.getDate(); //1-30
 const day = now.getDay(); // 0-6
 console.log(day);
 
-console.log(now.getTime()); // 1 jun 1970
-console.log(Date.now()); // 1 jun 1970
+console.log(now.getTime()); // 1 jun 1970 (timestamp) //** **/
+console.log(Date.now()); // 1 jun 1970 (timestamp)
+console.log(Number(now)); // 1 jun 1970 (timestamp)
+console.log(+now); // 1 jun 1970 (timestamp)
 
 console.log(now.toDateString());
-console.log(now.toISOString()); //*
-console.log(now.toLocaleDateString("fa")); //*
+console.log(now.toISOString()); //** **/
+console.log(now.toLocaleDateString("fa")); //** **/
 console.log(now.toLocaleString("fa"));
+console.log(now.toLocaleString());
+
+//
+
+//
+
+//
+
+//
+
+// // calculate date diffrence challenge // //
+// end - start => diffrence between days
+const daysDiff = (start, end) => {
+  const milliSec = new Date(end) - new Date(start);
+  console.log(new Date(end) - new Date(start));
+  const days = Math.floor(milliSec / (24 * 60 * 60 * 1000));
+  console.log(days);
+  return days;
+};
+daysDiff("7/22/2023", "7/26/2023");
+daysDiff("2023-07-22T18:10:07.080Z", "2023-08-20T18:10:07.080Z");
+// date-fns library
