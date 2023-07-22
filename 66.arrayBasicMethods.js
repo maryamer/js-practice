@@ -164,26 +164,56 @@
 //
 
 // //calc average challenge - chain method // //
-const userMarks = [9, 10, 13, 18, 20, 15, 7];
+// const userMarks = [9, 10, 13, 18, 20, 15, 7];
 // 1. calculate the average of marks
 // 2. calculatte the average of pased students
 // 3. shift marks based on +3 an recalculate the ave.
 // 1
-const ave = userMarks.reduce((acc, mark, index, arr) => {
-  return (acc += mark / arr.length);
-}, 0);
-console.log(ave.toFixed(2));
-// 2
-const passAve = userMarks
-  .filter((mark) => mark >= 10)
-  .reduce((acc, mark, index, arr) => {
-    return (acc += mark / arr.length);
-  }, 0);
-console.log(passAve.toFixed(1));
-// 3
-const plus3Ave = userMarks
-  .map((mark) => mark + 3)
-  .reduce((acc, mark, index, arr) => {
-    return (acc += mark / arr.length);
-  }, 0);
-console.log(plus3Ave.toFixed(2));
+// const ave = userMarks.reduce((acc, mark, index, arr) => {
+//   return (acc += mark / arr.length);
+// }, 0);
+// console.log(ave.toFixed(2));
+// // 2
+// const passAve = userMarks
+//   .filter((mark) => mark >= 10)
+//   .reduce((acc, mark, index, arr) => {
+//     return (acc += mark / arr.length);
+//   }, 0);
+// console.log(passAve.toFixed(1));
+// // 3
+// const plus3Ave = userMarks
+//   .map((mark) => mark + 3)
+//   .reduce((acc, mark, index, arr) => {
+//     return (acc += mark / arr.length);
+//   }, 0);
+// console.log(plus3Ave.toFixed(2));
+
+//
+//
+//
+//
+
+// // find and findIndex method // //
+// find //
+const products = [
+  { id: 1, title: "p1", price: "88.99$", quantity: 2 },
+  { id: 2, title: "p2", price: "68.99$", quantity: 2 },
+  { id: 3, title: "p3", price: "558.99$", quantity: 2 },
+];
+const p1 = products.find((p) => p.title === "p1");
+// console.log(p1);
+// findIndex => indexOf //
+// both return => index
+// indexOf => a simple value and can't get callbacck function
+// findIndex => i(()=>{...})
+products.findIndex((p) => p.title === "p1");
+// //challenge : remove a product ? based on p.id (with findIndex and splice)
+const removeProduct = (id) => {
+  const clone = [...products];
+  const pIndex = clone.findIndex((p) => p.id === id);
+  const filtered = clone.splice(pIndex, 1);
+  //   splice MUTATEs array
+  console.log(filtered);
+  console.log(clone);
+};
+removeProduct(1);
