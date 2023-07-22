@@ -1,4 +1,4 @@
-const arr = ["A", "B", "C", "D"];
+// const arr = ["A", "B", "C", "D"];
 
 // 1. length
 // 2. push :add element to end of array and returns the new length of the array
@@ -21,4 +21,25 @@ const arr = ["A", "B", "C", "D"];
 // // cceass the last index of an array:
 // 1. arr[arr.length -1]
 // 2.arr.slice(-1[0])
-console.log(arr.at(0));
+// 3. arr.at(-1)
+
+// console.log(arr.at(0));
+
+//
+//
+//
+//
+
+// // forEach method : loop on array,map,set
+// The forEach() method executes a provided function once for each array element.
+
+const myarr = ["records", "reactions", "necessary", "next.js", "vue js"];
+const courses = [];
+// myarr.forEach(callback function => A function to execute for each element in the array. Its return value is discarded.)
+// forEach return => undefined
+myarr.forEach((element, index, myarr) => {
+  courses.push({
+    id: index + 1,
+    title: element[0].toUpperCase() + element.toLowerCase().slice(1),
+  });
+});
