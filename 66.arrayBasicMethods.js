@@ -251,29 +251,29 @@
 // // some and every methods // // => return boolean
 //some => at least one item satisfy in callback condition
 // every => all items stisfy in callback condition
-const users = [
-  {
-    id: 1,
-    age: 28,
-    name: "maryam",
-    isActive: true,
-    role: "TEACHER",
-  },
-  {
-    id: 2,
-    age: 20,
-    name: "zahra",
-    isActive: false,
-    role: "ADMIN",
-  },
-  {
-    id: 3,
-    age: 22,
-    name: "sanam",
-    isActive: true,
-    role: "MANAGER",
-  },
-];
+// const users = [
+//   {
+//     id: 1,
+//     age: 28,
+//     name: "maryam",
+//     isActive: true,
+//     role: "TEACHER",
+//   },
+//   {
+//     id: 2,
+//     age: 20,
+//     name: "zahra",
+//     isActive: false,
+//     role: "ADMIN",
+//   },
+//   {
+//     id: 3,
+//     age: 22,
+//     name: "sanam",
+//     isActive: true,
+//     role: "MANAGER",
+//   },
+// ];
 // some
 // const hasActive = users.some((u) => u.isActive);
 // console.log(hasActive);
@@ -281,19 +281,60 @@ const users = [
 // const isAllActive = users.every((u) => u.isActive);
 // console.log(isAllActive);
 
-const enrolledCourses = [2, 3];
-const cart = [
-  { id: 1, title: "p1", price: "88.99$" },
-  { id: 2, title: "p2", price: "68.99$" },
-  { id: 3, title: "p3", price: "558.99$" },
-];
-function checkAlredyEnrolled(cart, enrolledCourses) {
-  const courseIds = cart.map((c) => c.id);
-  const found = enrolledCourses.some((id) => courseIds.includes(id));
-  // or
-  //   const found = enrolledCourses.some((id) => courseIds.indexOf(id) >= 0);
-  if (found) return "you alredy registered in one of courses";
-  return "ok";
-}
-console.log(checkAlredyEnrolled(cart, enrolledCourses));
-// checkAlredyEnrolled(cart, enrolledCourses);
+// // checkAlredyEnrolled(cart, enrolledCourses);
+// const enrolledCourses = [2, 3];
+// const cart = [
+//   { id: 1, title: "p1", price: "88.99$" },
+//   { id: 2, title: "p2", price: "68.99$" },
+//   { id: 3, title: "p3", price: "558.99$" },
+// ];
+// function checkAlredyEnrolled(cart, enrolledCourses) {
+//   const courseIds = cart.map((c) => c.id);
+//   const found = enrolledCourses.some((id) => courseIds.includes(id));
+//   // or
+//   //   const found = enrolledCourses.some((id) => courseIds.indexOf(id) >= 0);
+//   if (found) return "you alredy registered in one of courses";
+//   return "ok";
+// }
+// console.log(checkAlredyEnrolled(cart, enrolledCourses));
+
+//
+
+//
+
+//
+
+//
+
+// // sort method // // => MUTATE
+// string
+const userNameList = ["cike", "billiam", "ali"];
+console.log(userNameList.sort());
+
+// number
+const nums = [1, 30, 4, 21, 1000];
+console.log(nums.sort());
+// nums.sort(compare function);
+// return > 0 =>[B,A] (switch)
+// return < 0 =>[A,B] (same)
+
+// ascending:
+// const sortedNumsAsc = nums.sort((a, b) => {
+//   if (a < b) {
+//     return -1;
+//   }
+//   return 1;
+// });
+// or
+const sortedNumsAsc = nums.sort((a, b) => a - b);
+console.log(sortedNumsAsc);
+
+// descending:
+// const sortedNumsDesc = nums.sort((a, b) => {
+//   if (a > b) {
+//     return -1;
+//   }
+//   return 1;
+// });
+const sortedNumsDesc = nums.sort((a, b) => b - a);
+console.log(sortedNumsDesc);
