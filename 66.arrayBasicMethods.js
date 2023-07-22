@@ -127,7 +127,33 @@ const users = [
 //  how to filter all active users?
 // const active = users.filter((user) => user.isActive);
 // console.log(active);
-
+//
 // 10 user => delete user
-const deleteUser = (id) => users.filter((user) => user.id !== id);
-console.log(deleteUser(1));
+// const deleteUser = (id) => users.filter((user) => user.id !== id);
+// console.log(deleteUser(1));
+
+//
+//
+//
+//
+
+// reduce method : NOT MUTATE => the final result is a single value //
+//reduce(callBaclValue, initialValue) => Calls the specified callback function for all the elements in an array. The return value of the callback function is the accumulated result, and is provided as an argument in the next call to the callback function.
+//
+// const total = users.reduce((acc, current, index) => acc + current.id, 0);
+// console.log(total);
+//
+const products = [
+  { title: "p1", price: "88.99$", quantity: 2 },
+  { title: "p2", price: "68.99$", quantity: 2 },
+  { title: "p3", price: "558.99$", quantity: 2 },
+];
+const totalPrice = products.reduce((acc, product) => {
+  let price =
+    parseFloat(product.price.slice(0, product.price.length - 1)) *
+    product.quantity;
+  //   or
+  let price2 = parseFloat(product.price.split("$")[0]) * product.quantity;
+  return (acc += price);
+}, 0);
+console.log(totalPrice);
