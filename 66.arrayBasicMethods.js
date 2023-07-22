@@ -103,17 +103,31 @@ const users = [
 // const userIds = users.forEach((user) => {
 //   userIds.push(user.id);
 // });
-const userIds = users.map(({ id }) => {
-  return { id: id };
-});
+// const userIds = users.map(({ id }) => {
+//   return { id: id };
+// });
 
 // /// // challenge // /// //
-const newUsers = users.map((user) => {
-  return {
-    msg: `hi ${user.name} ,your profile is ${
-      user.isActive ? "active" : "not active"
-    } and your role is ${user.role}`,
-    ...user,
-  };
-});
-console.log(newUsers);
+// const newUsers = users.map((user) => {
+//   return {
+//     msg: `hi ${user.name} ,your profile is ${
+//       user.isActive ? "active" : "not active"
+//     } and your role is ${user.role}`,
+//     ...user,
+//   };
+// });
+// console.log(newUsers);
+
+//
+//
+//
+//
+
+// filter method : NOT MUTATE // => satisfy on a condition ?
+//  how to filter all active users?
+// const active = users.filter((user) => user.isActive);
+// console.log(active);
+
+// 10 user => delete user
+const deleteUser = (id) => users.filter((user) => user.id !== id);
+console.log(deleteUser(1));
