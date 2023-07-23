@@ -123,14 +123,44 @@
 
 // local date //
 // toLocalDateString()
+//
+// const now = new Date();
+// const options = {
+//   year: "numeric",
+//   month: "long",
+//   day: "numeric",
+//   weekday: "long",
+//   hour: "numeric",
+// };
+// console.log(now.toLocaleDateString("fa-IR", options));
+// console.log(Intl.DateTimeFormat("fa-IR", options).format(now));
 
-const now = new Date();
-const options = {
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-  weekday: "long",
-  hour: "numeric",
-};
-console.log(now.toLocaleDateString("fa-IR", options));
-console.log(Intl.DateTimeFormat("fa-IR", options).format(now));
+//
+
+//
+
+//
+
+//
+
+// // set timeout() and setinterval() // //
+// function sayHi(name) {
+//   console.log(`say hi ${name}`);
+// }
+// const timerId = setTimeout(sayHi, 1000, "maryam");
+// setTimeout(() => {
+//   clearTimeout(timerId);
+//   console.log("clear timer id");
+// }, 2000);
+// setInterval(sayHi, 3000, "ali");
+
+let count = 0;
+const intervalId = setInterval(() => {
+  if (count === 10) {
+    clearInterval(intervalId);
+    console.log(count);
+  } else {
+    count++;
+    console.log(count);
+  }
+}, 1000);
