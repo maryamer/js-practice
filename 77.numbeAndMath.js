@@ -168,21 +168,20 @@
 // }, 1000);
 
 // spotwatch / countdown timer
-
-function countDown(time) {
-  const timer = () => {
-    const min = String(Math.trunc(time / 60)).padStart(2, 0);
-    const sec = String(time % 60).padStart(2, 0);
-    if (time === 0) {
-      clearInterval(intervalId);
-      console.log("click to resend otp");
-      console.log(time);
-    } else {
-      console.log(min, ":", sec);
-      time--;
-    }
-  };
-  timer();
-  const intervalId = setInterval(timer, 1000);
-}
-countDown(120);
+// function countDown(time) {
+//   const timer = () => {
+//     const min = String(Math.trunc(time / 60)).padStart(2, 0);
+//     const sec = String(time % 60).padStart(2, 0);
+//     if (time === 0) {
+//       clearInterval(intervalId);
+//       console.log("click to resend otp");
+//       console.log(time);
+//     } else {
+//       console.log(min, ":", sec);
+//       time--;
+//     }
+//   };
+//   timer();
+//   const intervalId = setInterval(timer, 1000);
+// }
+// countDown(120);
