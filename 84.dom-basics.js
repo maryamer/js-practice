@@ -24,12 +24,13 @@
 // prepend => first of the elements
 // appendChild
 
-const newCourse = document.createElement("p");
-newCourse.textContent = "javascript course";
-newCourse.classList.add("course-title");
-document.querySelector("#course-list").append(newCourse);
+// const newCourse = document.createElement("p");
+// newCourse.textContent = "javascript course";
+// newCourse.classList.add("course-title");
+// document.querySelector("#course-list").append(newCourse);
+// console.log(document.getElementById("course-list"));
 
-console.log(document.getElementById("course-list"));
+// // add element to dom
 
 // const seeMoreP = document.createElement("p");
 // seeMoreP.classList.add("see-more");
@@ -43,5 +44,20 @@ const seeMore = document.createElement("div");
 seeMore.innerHTML = `<p class="see-more">
 see All course-list
 <button class="see-btn">see all</button>
+<button class="close-btn">close</button>
 </p>`;
 document.querySelector("#course-list").append(seeMore);
+document.querySelector(".close-btn").addEventListener("click", () => {
+  document.querySelector(".see-more").remove();
+});
+
+// // remove and update element in DOM
+// updating
+// document.querySelector("#addBtn").textContent = "add btn again";
+// remove
+// document.querySelector("#addBtn").remove();
+// remove all
+// const courses = document.querySelectorAll(".course");
+// courses.forEach((course) => {
+//   course.remove();
+// });
