@@ -143,7 +143,9 @@
 
 //
 
-// // set timeout() and setinterval() // //
+// // settimeout() Vs setinterval() // //
+// setTimeout => ONCE
+// setInterval => repeatedly
 // function sayHi(name) {
 //   console.log(`say hi ${name}`);
 // }
@@ -153,14 +155,34 @@
 //   console.log("clear timer id");
 // }, 2000);
 // setInterval(sayHi, 3000, "ali");
+//
+// let count = 0;
+// const intervalId = setInterval(() => {
+//   if (count === 10) {
+//     clearInterval(intervalId);
+//     console.log(count);
+//   } else {
+//     count++;
+//     console.log(count);
+//   }
+// }, 1000);
 
-let count = 0;
-const intervalId = setInterval(() => {
-  if (count === 10) {
-    clearInterval(intervalId);
-    console.log(count);
-  } else {
-    count++;
-    console.log(count);
-  }
-}, 1000);
+// spotwatch / countdown timer
+
+function countDown(time) {
+  const timer = () => {
+    const min = String(Math.trunc(time / 60)).padStart(2, 0);
+    const sec = String(time % 60).padStart(2, 0);
+    if (time === 0) {
+      clearInterval(intervalId);
+      console.log("click to resend otp");
+      console.log(time);
+    } else {
+      console.log(min, ":", sec);
+      time--;
+    }
+  };
+  timer();
+  const intervalId = setInterval(timer, 1000);
+}
+countDown(120);
