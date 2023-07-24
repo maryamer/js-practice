@@ -68,16 +68,54 @@
 //
 
 // // input - change event
+// const searchInput = document.querySelector("#search-value");
+// searchInput.addEventListener("input", (e) => {
+//   console.log(e.target.value);
+// });
+// searchInput.addEventListener("copy", (e) => {
+//   console.log(e.type, window.getSelection().toString());
+// });
+// searchInput.addEventListener("paste", (e) => {
+//   console.log(e.type, e.clipboardData.getData("text/plain"));
+// });
+
+//
+//
+//
+//
+
+// // search on products challenge // //
+
+const products = [
+  { id: 1, title: "React js Course" },
+  { id: 2, title: "React js Course" },
+  { id: 3, title: "React js Course" },
+  { id: 4, title: "React js Course" },
+];
+const filters = {
+  title: "",
+};
+const courses = document.querySelector("#course-list");
 const searchInput = document.querySelector("#search-value");
-
 searchInput.addEventListener("input", (e) => {
-  console.log(e.target.value);
+  //   console.log(e.target.value);
+  filters.title = e.target.value.trim();
+  //   1.filter products
+  // 2. add products to DOM
+  renderProducts(products, filters);
 });
 
-searchInput.addEventListener("copy", (e) => {
-  console.log(e.type, window.getSelection().toString());
-});
-
-searchInput.addEventListener("paste", (e) => {
-  console.log(e.type, e.clipboardData.getData("text/plain"));
-});
+function renderProducts(_products, _filters) {
+  const filteredProducts = _products.filter((p) => {
+    return p.title.toLowerCase().includes(_filters.title.toLowerCase());
+  });
+  courses.innerHTML = ` `;
+  console.log(filteredProducts);
+  filteredProducts.forEach((item) => {
+    const p = document.createElement("p");
+    p.classList.add("course-title");
+    p.textContent = item.title;
+    courses.append(p);
+  });
+}
+renderProducts(products, filters);
