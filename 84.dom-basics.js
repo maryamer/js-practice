@@ -40,16 +40,16 @@
 // seeMoreP.append("see more courses", seeMoreBtn);
 // document.querySelector("#course-list").append(seeMoreP);
 
-const seeMore = document.createElement("div");
-seeMore.innerHTML = `<p class="see-more">
-see All course-list
-<button class="see-btn">see all</button>
-<button class="close-btn">close</button>
-</p>`;
-document.querySelector("#course-list").append(seeMore);
-document.querySelector(".close-btn").addEventListener("click", () => {
-  document.querySelector(".see-more").remove();
-});
+// const seeMore = document.createElement("div");
+// seeMore.innerHTML = `<p class="see-more">
+// see All course-list
+// <button class="see-btn">see all</button>
+// <button class="close-btn">close</button>
+// </p>`;
+// document.querySelector("#course-list").append(seeMore);
+// document.querySelector(".close-btn").addEventListener("click", () => {
+//   document.querySelector(".see-more").remove();
+// });
 
 // // remove and update element in DOM
 // updating
@@ -61,3 +61,23 @@ document.querySelector(".close-btn").addEventListener("click", () => {
 // courses.forEach((course) => {
 //   course.remove();
 // });
+
+//
+//
+//
+//
+
+// // input - change event
+const searchInput = document.querySelector("#search-value");
+
+searchInput.addEventListener("input", (e) => {
+  console.log(e.target.value);
+});
+
+searchInput.addEventListener("copy", (e) => {
+  console.log(e.type, window.getSelection().toString());
+});
+
+searchInput.addEventListener("paste", (e) => {
+  console.log(e.type, e.clipboardData.getData("text/plain"));
+});
