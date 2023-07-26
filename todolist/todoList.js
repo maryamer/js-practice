@@ -5,11 +5,20 @@
 // let todos = [];
 const todoInput = document.querySelector(".todo-input");
 const todoForm = document.querySelector(".todo-form");
+const todoEditInput = document.querySelector(".todo-edit-input");
+const todoEditForm = document.querySelector(".todo-edit-form");
 const todoList = document.querySelector(".todolist");
 const selectFilter = document.querySelector(".filter-todos");
+const closeModalBtn = document.querySelector(".close-modal");
+
+let editItemId = "";
+
+const backdrop = document.querySelector(".backdrop");
+const modal = document.querySelector(".modal");
 
 // events
 todoForm.addEventListener("submit", addNewTodo);
+todoEditForm.addEventListener("submit", editTodo);
 
 document.addEventListener("DOMContentLoaded", (e) => {
   const todos = getAllTodos();
@@ -17,6 +26,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
 });
 
 selectFilter.addEventListener("change", filterTodos);
+closeModalBtn.addEventListener("click", closeEditModal);
+backdrop.addEventListener("click", closeEditModal);
 
 // functions
 function addNewTodo(e) {
@@ -50,6 +61,7 @@ function createTodos(todos) {
 <button class="todo__remove" data-todo-id=${
       todo.id
     }><i class="far fa-trash-alt"></i></button>
+<button class="show-modal" data-todo-id=${todo.id}>Edite</button>
 </li>
 `;
   });
@@ -62,6 +74,15 @@ function createTodos(todos) {
   const checkBtns = [...document.querySelectorAll(".todo__check")];
   checkBtns.forEach((btn) => {
     btn.addEventListener("click", checkTodo);
+  });
+  const showModalBtns = [...document.querySelectorAll(".show-modal")];
+  showModalBtns.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      // backdrop, modal => remove hidden class
+      editItemId = btn.getAttribute("data-todo-id");
+      backdrop.classList.remove("hidden");
+      modal.classList.remove("hidden");
+    });
   });
 }
 
@@ -82,6 +103,23 @@ function checkTodo(e) {
   createTodos(todos);
   saveTodos(todos);
   filterTodos();
+}
+function editTodo(e) {
+  e.preventDefault();
+  let todoId = editItemId;
+  let todos = getAllTodos();
+  console.log(todos);
+  let todo = todos.find((todo) => Number(todo.id) === Number(todoId));
+  todo.title = todoEditInput.value;
+  createTodos(todos);
+  saveTodos(todos);
+  filterTodos();
+  closeEditModal();
+}
+function closeEditModal() {
+  // backdrop, modal => add hidden class
+  backdrop.classList.add("hidden");
+  modal.classList.add("hidden");
 }
 function filterTodos() {
   const todos = getAllTodos();
