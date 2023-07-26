@@ -2,7 +2,7 @@
 // const tod,=> todos.push()
 
 // selecting
-let todos = [];
+// let todos = [];
 const todoInput = document.querySelector(".todo-input");
 const todoForm = document.querySelector(".todo-form");
 const todoList = document.querySelector(".todolist");
@@ -10,6 +10,12 @@ const selectFilter = document.querySelector(".filter-todos");
 
 // events
 todoForm.addEventListener("submit", addNewTodo);
+
+document.addEventListener("DOMContentLoaded", (e) => {
+  const todos = getAllTodos();
+  createTodos(todos);
+});
+
 selectFilter.addEventListener("change", filterTodos);
 
 // functions
@@ -24,9 +30,9 @@ function addNewTodo(e) {
     title: todoInput.value,
     isCompleted: false,
   };
-  todos.push(newTodo);
+  const todos = saveTodo(newTodo);
   createTodos(todos);
-  filterTodos();
+  filterTodos(todos);
 }
 function createTodos(todos) {
   //   create todos on DOM
@@ -60,21 +66,25 @@ function createTodos(todos) {
 }
 
 function removeTodo(e) {
-  //   console.log(e.target.dataset.todoId);
+  let todos = getAllTodos();
   const todoId = Number(e.target.dataset.todoId);
   const filteredTodos = todos.filter((todo) => todo.id !== todoId);
   todos = filteredTodos;
-  createTodos(todos);
+  createTodos(filteredTodos);
+  saveTodos(todos);
   filterTodos();
 }
 function checkTodo(e) {
+  let todos = getAllTodos();
   const todoId = Number(e.target.dataset.todoId);
   const todo = todos.find((todo) => todo.id === todoId);
   todo.isCompleted = !todo.isCompleted;
   createTodos(todos);
+  saveTodos(todos);
   filterTodos();
 }
 function filterTodos() {
+  const todos = getAllTodos();
   const filter = selectFilter.value;
   switch (filter) {
     case "all": {
@@ -96,4 +106,24 @@ function filterTodos() {
       createTodos(todos);
     }
   }
+}
+
+// local storage => web API
+// localStorage.setItem("todos", JSON.stringify(todos));
+// JSON.parse(localStorage.getItem("todos"));
+
+function getAllTodos() {
+  const savedTodos = JSON.parse(localStorage.getItem("todos")) || [];
+  return savedTodos;
+}
+function saveTodo(todo) {
+  const savedTodos = getAllTodos();
+  savedTodos.push(todo);
+  localStorage.setItem("todos", JSON.stringify(savedTodos));
+  return savedTodos;
+}
+function saveTodos(todos) {
+  const savedTodos = todos;
+  localStorage.setItem("todos", JSON.stringify(savedTodos));
+  return savedTodos;
 }
