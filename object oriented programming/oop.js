@@ -45,5 +45,17 @@ function CreateCourse(title, price, discount, isFree) {
 //   this.calcOfPrice = function () {
 //     return price * (1 - discount / 100);
 //   };
-
 // constructure function => class => OOP
+
+//
+//
+//
+
+// prototype:
+const arr = [1, 3, 4];
+const obj = { name: "maryam" };
+const str = new String("maryam");
+
+// arr => Array.prototype => object.prototype => null
+// obj => object.prototype => null
+// str => String.prototype => object.prototype => null
