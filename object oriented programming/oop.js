@@ -65,19 +65,34 @@ const str = new String("maryam");
 //
 
 // add methods on prototype
-
 function CreateCourse2(title, price, discount, isFree) {
   this.title = title;
   this.price = price;
   this.discount = discount;
   this.isFree = isFree;
-  //   this.calcOfPrice = function () {
-  //     return this.price * (1 - this.discount / 100);
-  //   };
 }
-// console.log(CreateCourse2.prototype);
 CreateCourse2.prototype.calcOfPrice = function () {
   return this.price * (1 - this.discount / 100);
 };
 const course = new CreateCourse2("Next.js", 200, 10, false);
 console.log(course.calcOfPrice());
+
+//
+//
+//
+
+// convert constructor funnction to class
+class Courses {
+  constructor(title, price, discount, isFree) {
+    this.title = title;
+    this.price = price;
+    this.discount = discount;
+    this.isFree = isFree;
+  }
+  calcOfPrice = () => {
+    return this.price * (1 - this.discount / 100);
+  };
+}
+const courseClass = new Courses("Next.js", 200, 10, false);
+
+console.log(courseClass.calcOfPrice());
