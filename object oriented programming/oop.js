@@ -136,8 +136,43 @@ const user2 = {
     // const age = Math.floor(millisec / (365 * 24 * 60 * 60 * 1000));
     const now = new Date().getFullYear();
     const birthday = new Date(this.birthday).getFullYear();
-    console.log(age);
     return now - birthday;
   },
 };
 user2.age;
+
+//
+//
+//
+//
+
+// static method and static property
+
+class Article {
+  constructor(title) {
+    this.title = title;
+  }
+  static testMethod() {
+    console.log(this);
+    return this;
+  }
+  static compare(first, secound) {
+    return first.title === secound.title;
+  }
+  static testData = "data";
+}
+// Article.testMethod = function () {
+//   console.log(this);
+// };
+// Article.testData = "data";
+
+// const article = new Article("noode js");
+const articles = [new Article("node.js"), new Article("react.js")];
+// article.testMethod();
+Article.testMethod();
+console.log(Article.compare(...articles));
+console.log(Article.testData);
+
+// static methods =>
+// 1. helper(utility) methods related to class => database related
+// 2. constructor method => create new instance
