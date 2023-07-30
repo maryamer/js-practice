@@ -237,8 +237,51 @@
 //
 //
 
+// //encapsulating =>protected fields, private fields ,private methods,public methods
+
 // protected properties : Encapsulation
 // data privacy
+
+// class User {
+//   constructor(name) {
+//     this.name = name;
+//   }
+//   greet() {
+//     return `hi ${this.name},welcome to js`;
+//   }
+// }
+// const user3 = new User("saheb");
+// console.log(user3.greet());
+
+// class Admin extends User {
+//   constructor(name, role) {
+//     super(name); // call parent constructor => this =>
+//     this._role = role;
+//     this._permissions = [];
+//   }
+//   _checkRole() {
+//     return this._role;
+//   }
+//   addProduct(product) {
+//     if (this._checkRole() === "ADMIN") {
+//       return `you can add ${product}`;
+//     }
+//   }
+//   introduce() {
+//     return `my name is ${this.name} ${this.role}`;
+//   }
+// }
+
+// const admin = new Admin("Ali", "ADMIN");
+// console.log(admin.introduce());
+// console.log(admin.addProduct("React"));
+
+//
+//
+//
+//
+
+// private fields : encapsulating
 
 class User {
   constructor(name) {
@@ -252,13 +295,21 @@ const user3 = new User("saheb");
 console.log(user3.greet());
 
 class Admin extends User {
+  // public field
+  numOfCreatedPosts = 0;
+  // private field
+  #permissions = [];
+  #role = "";
   constructor(name, role) {
-    super(name); // call parent constructor => this =>
-    this._role = role;
-    this._permissions = [];
+    super(name);
+    this.#role = role;
   }
   _checkRole() {
-    return this._role;
+    return this.#role;
+  }
+  addPermission(permission) {
+    this.#permissions.push(permission);
+    console.log(this.#permissions);
   }
   addProduct(product) {
     if (this._checkRole() === "ADMIN") {
@@ -273,3 +324,4 @@ class Admin extends User {
 const admin = new Admin("Ali", "ADMIN");
 console.log(admin.introduce());
 console.log(admin.addProduct("React"));
+admin.addPermission("product");
