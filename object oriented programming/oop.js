@@ -201,3 +201,33 @@
 // 4. polymorphism
 // //many shapes
 // //A child class can overwrite inherited methods  from a parent class
+
+//
+//
+//
+//
+
+// class inheritance
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+  greet() {
+    return `hi ${this.name},welcome to js`;
+  }
+}
+const user3 = new User("saheb");
+console.log(user3.greet());
+
+class Admin extends User {
+  constructor(name, role) {
+    super(name); // call parent constructor => this =>
+    this.role = role;
+  }
+  introduce() {
+    return `my name is ${this.name} ${this.role}`;
+  }
+}
+
+const admin = new Admin("Ali", "Admin");
+console.log(admin.introduce());
