@@ -282,6 +282,7 @@
 //
 
 // private fields : encapsulating
+// private methodes : encapsulating
 
 class User {
   constructor(name) {
@@ -299,25 +300,27 @@ class Admin extends User {
   numOfCreatedPosts = 0;
   // private field
   #permissions = [];
-  #role = "";
+  #role;
   constructor(name, role) {
     super(name);
     this.#role = role;
   }
-  _checkRole() {
+  // private method
+  #checkRole() {
     return this.#role;
   }
+  // public method
   addPermission(permission) {
     this.#permissions.push(permission);
     console.log(this.#permissions);
   }
   addProduct(product) {
-    if (this._checkRole() === "ADMIN") {
+    if (this.#checkRole() === "ADMIN") {
       return `you can add ${product}`;
     }
   }
   introduce() {
-    return `my name is ${this.name} ${this.role}`;
+    return `my name is ${this.name} ${this.#role}`;
   }
 }
 
