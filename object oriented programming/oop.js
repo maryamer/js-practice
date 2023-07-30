@@ -208,6 +208,38 @@
 //
 
 // class inheritance
+// class User {
+//   constructor(name) {
+//     this.name = name;
+//   }
+//   greet() {
+//     return `hi ${this.name},welcome to js`;
+//   }
+// }
+// const user3 = new User("saheb");
+// console.log(user3.greet());
+
+// class Admin extends User {
+//   constructor(name, role) {
+//     super(name); // call parent constructor => this =>
+//     this.role = role;
+//   }
+//   introduce() {
+//     return `my name is ${this.name} ${this.role}`;
+//   }
+// }
+
+// const admin = new Admin("Ali", "Admin");
+// console.log(admin.introduce());
+
+//
+//
+//
+//
+
+// protected properties : Encapsulation
+// data privacy
+
 class User {
   constructor(name) {
     this.name = name;
@@ -222,12 +254,22 @@ console.log(user3.greet());
 class Admin extends User {
   constructor(name, role) {
     super(name); // call parent constructor => this =>
-    this.role = role;
+    this._role = role;
+    this._permissions = [];
+  }
+  _checkRole() {
+    return this._role;
+  }
+  addProduct(product) {
+    if (this._checkRole() === "ADMIN") {
+      return `you can add ${product}`;
+    }
   }
   introduce() {
     return `my name is ${this.name} ${this.role}`;
   }
 }
 
-const admin = new Admin("Ali", "Admin");
+const admin = new Admin("Ali", "ADMIN");
 console.log(admin.introduce());
+console.log(admin.addProduct("React"));
