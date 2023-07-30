@@ -76,6 +76,7 @@ CreateCourse2.prototype.calcOfPrice = function () {
 };
 const course = new CreateCourse2("Next.js", 200, 10, false);
 console.log(course.calcOfPrice());
+console.log(course.__proto__ === CreateCourse2.prototype);
 
 //
 //
@@ -94,5 +95,49 @@ class Courses {
   };
 }
 const courseClass = new Courses("Next.js", 200, 10, false);
-
 console.log(courseClass.calcOfPrice());
+console.log(courseClass.__proto__ === Courses.prototype);
+
+//
+//
+//
+//
+
+// setter and getter
+
+// data property
+// accesor property => methods that start with set and get keywords => set fff() or get fff() keywords
+
+const user = {
+  firstName: "Maryam",
+  lastName: "Ebrahimi",
+  get fullName() {
+    return `${this.firstName} ${user.lastName}`;
+  },
+  set fullName(name) {
+    if (name && name.includes(" ")) {
+      [this.firstName, this.lastName] = name.split(" ");
+    } else {
+      alert(`${name} is not a valid fullname`);
+    }
+  },
+};
+console.log(user.fullName);
+user.fullName = "mahta mohammadi";
+console.log(user.fullName);
+
+const user2 = {
+  name: "ali",
+  birthday: "1995-05-06T00:11:23.819Z",
+  get age() {
+    // const now = new Date();
+    // const birthday = new Date(this.birthday);
+    // const millisec = Number(now) - Number(birthday);
+    // const age = Math.floor(millisec / (365 * 24 * 60 * 60 * 1000));
+    const now = new Date().getFullYear();
+    const birthday = new Date(this.birthday).getFullYear();
+    console.log(age);
+    return now - birthday;
+  },
+};
+user2.age;
