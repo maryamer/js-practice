@@ -133,18 +133,54 @@ class UI {
       const id = event.target.dataset.id;
       const targetClass = event.target.classList;
       if (targetClass.contains("fa-chevron-up")) {
-        // console.log(id);
         const addQuantity = event.target;
         // get item from cart
         const addedItem = cart.find((item) => Number(item.id) === Number(id));
         addedItem.quantity++;
-        // cart = [...cart, addedItem];
         // update cart value
         this.setCartValue(cart);
         // save cart
         Storage.saveCart(cart);
         // update cart item in ui
         addQuantity.nextElementSibling.innerText = addedItem.quantity;
+      } else if (targetClass.contains("fa-chevron-down")) {
+        const subQuantity = event.target;
+        const substractedItem = cart.find(
+          (c) => c.id == subQuantity.dataset.id
+        );
+        if (substractedItem.quantity == 1) {
+          const removeItem = event.target;
+          const _removedItem = cart.find(
+            (item) => item.id == removeItem.dataset.id
+          );
+          this.removeItem(_removedItem.id);
+          Storage.saveCart(cart);
+
+          cartContent.removeChild(removeItem.parentElement.parentElement);
+        } else {
+          substractedItem.quantity--;
+
+          // update cart value
+          this.setCartValue(cart);
+          // save cart
+          Storage.saveCart(cart);
+          // update cart item in ui
+          subQuantity.previousElementSibling.innerText =
+            substractedItem.quantity;
+        }
+      } else if (targetClass.contains("fa-trash-alt")) {
+        const removeItem = event.target;
+        const _removedItem = cart.find(
+          (item) => item.id == removeItem.dataset.id
+        );
+        this.removeItem(_removedItem.id);
+        Storage.saveCart(cart);
+
+        cartContent.removeChild(removeItem.parentElement.parentElement);
+        // remove from cart item
+        // call remove
+      } else {
+        null;
       }
     });
   }
@@ -170,8 +206,10 @@ class UI {
     const button = buttonsDOM.find(
       (btn) => Number(btn.dataset.id) === Number(id)
     );
-    button.innerText = "add to cart";
-    button.disabled = false;
+    if (button) {
+      button.innerText = "add to cart";
+      button.disabled = false;
+    }
   }
 }
 
