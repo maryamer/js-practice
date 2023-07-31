@@ -6,6 +6,7 @@ const closeModal = document.querySelector(".cart-item-confirm");
 const productsDOM = document.querySelector(".products-center");
 const cartTotal = document.querySelector(".cart-total");
 const cartItems = document.querySelector(".cart-items");
+const cartContent = document.querySelector(".cart-content");
 
 import { productsData } from "./products.js";
 let cart = [];
@@ -48,7 +49,7 @@ class UI {
       const id = btn.dataset.id;
       // check if this product id is in cart or not
       let isInCart = cart.find((p) => Number(p.Id) === Number(id));
-      console.log(cart);
+
       if (isInCart) {
         btn.textContent = "In cart";
         btn.disable = true;
@@ -57,17 +58,18 @@ class UI {
         event.target.innerText = "In Cart";
         event.target.disabled = true; //** */
         // get product from products
-        const addedProduct = Storage.getProduct(id);
+        const addedProduct = { ...Storage.getProduct(id), quantity: 1 };
         console.log(addedProduct);
 
         // add to cart
-        cart = [...cart, { ...addedProduct, quantity: 1 }];
+        cart = [...cart, addedProduct];
 
         // save cart too local storage
         Storage.saveCart(cart);
         // update cart value
         this.setCartValue(cart);
         // add to cart item
+        this.addCartItem(addedProduct);
         // get cart from local storage
       });
     });
@@ -80,8 +82,36 @@ class UI {
       tempCartValue += curr.quantity;
       return (acc += curr.quantity * curr.price);
     }, 0);
-    cartTotal.innerText = `total price: ${totalPrice} $`;
+    cartTotal.innerText = `total price: ${totalPrice.toFixed(2)} $`;
     cartItems.innerText = tempCartValue;
+  }
+  addCartItem(cartItem) {
+    const div = document.createElement("div");
+    div.classList.add("cart-item");
+    div.innerHTML = ` 
+    <img
+      class="cart-item-img"
+      src=${cartItem.imageUrl}
+      alt=""
+    />
+    <div class="cart-item-desc">
+      <p class="item-title">${cartItem.title}</p>
+      <p>${cartItem.price * cartItem.quantity}</p>
+    </div>
+    <div class="flex-column-center cart-item-controller">
+      <div>
+        <i class="fas fa-angle-up"></i>
+      </div>
+      <div sclass="flex-row-center">${cartItem.quantity}</div>
+      <div class>
+        <i class="fas fa-angle-down"></i>
+      </div>
+    </div>
+    <div class="flex-column-center">
+      <i class="fa-solid fa-trash"></i>
+    </div>
+  `;
+    cartContent.appendChild(div);
   }
 }
 // 3.storage
