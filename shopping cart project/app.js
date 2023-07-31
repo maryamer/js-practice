@@ -18,6 +18,7 @@ class Products {
   }
 }
 // 2. display products
+
 class UI {
   displayProducts(products) {
     let result = ``;
@@ -108,12 +109,22 @@ class UI {
       </div>
     </div>
     <div class="flex-column-center">
-      <i class="fa-solid fa-trash"></i>
+      <i class="far fa-trash-alt"></i>
     </div>
   `;
     cartContent.appendChild(div);
   }
+  setUpApp() {
+    // get cart from
+    cart = Storage.getCart() || [];
+    console.log(cart);
+    // add cart item
+    cart.forEach((item) => this.addCartItem(item));
+    // setValues: price +items
+    this.setCartValue(cart);
+  }
 }
+
 // 3.storage
 class Storage {
   static saveProducts(products) {
@@ -126,16 +137,17 @@ class Storage {
   static saveCart(cart) {
     localStorage.setItem("cart", JSON.stringify(cart));
   }
-  // static getCart() {
-  //   const cart = JSON.parse(localStorage.getItem("cart"));
-  //   console.log(cart);
-  //   return cart;
-  // }
+  static getCart() {
+    const cart = JSON.parse(localStorage.getItem("cart"));
+    return cart;
+  }
 }
 document.addEventListener("DOMContentLoaded", () => {
   const products = new Products();
   const productsData = products.getProduct();
   const ui = new UI();
+  // set up : get cart and  set up application:
+  ui.setUpApp();
   ui.displayProducts(productsData);
   ui.getAddToCartBtns();
   Storage.saveProducts(productsData);

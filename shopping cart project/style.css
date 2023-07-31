@@ -224,9 +224,9 @@ body {
 .clear-cart {
   border: 1px solid var(--primaryColor) !important;
 }
-.fa-trash {
+.fa-trash-alt {
   cursor: pointer;
 }
-.fa-trash:hover {
+.fa-trash-alt:hover {
   color: var(--mainRed);
 }
