@@ -11,6 +11,7 @@ const clearCart = document.querySelector(".clear-cart");
 
 import { productsData } from "./products.js";
 let cart = [];
+let buttonsDOM = [];
 // 1. get products
 class Products {
   getProduct() {
@@ -37,14 +38,14 @@ class UI {
               <p class="product-price">${item.price}$</p>
             </div>
             <button class="add-to-cart" data-id=${item.id} >
-            <i class="fas fa-shopping-cart"></i>
             add to cart</button>
           </section>`;
       productsDOM.innerHTML = result;
     });
   }
   getAddToCartBtns() {
-    const addToBtn = document.querySelectorAll(".add-to-cart");
+    const addToBtn = [...document.querySelectorAll(".add-to-cart")];
+    buttonsDOM = addToBtn;
     const buttons = [...addToBtn];
 
     buttons.forEach((btn) => {
@@ -104,15 +105,15 @@ class UI {
     </div>
     <div class="flex-column-center cart-item-controller">
       <div>
-        <i class="fas fa-angle-up"></i>
+        <i class="fas fa-angle-up" data-id=${cartItem.id}></i>
       </div>
       <div sclass="flex-row-center">${cartItem.quantity}</div>
       <div class>
-        <i class="fas fa-angle-down"></i>
+        <i class="fas fa-angle-down" data-id=${cartItem.id}></i>
       </div>
     </div>
     <div class="flex-column-center">
-      <i class="far fa-trash-alt"></i>
+      <i class="far fa-trash-alt" data-id=${cartItem.id} ></i>
     </div>
   `;
     cartContent.appendChild(div);
@@ -127,19 +128,32 @@ class UI {
   }
   cartLogic() {
     // clear cart
-    clearCart.addEventListener("click", () => {
-      console.log("clear cart");
-      //  remove all(DRY => dont repeat yourself)
-      cart.forEach((item) => this.removeItem(item.id));
-    });
+    clearCart.addEventListener("click", () => this.clearCart());
+  }
+  clearCart() {
+    cart.forEach((item) => this.removeItem(item.id));
+    console.log(cartContent.children);
+    while (cartContent.children.length) {
+      cartContent.removeChild(cartContent.children[0]);
+    }
+    closeModalFunction();
   }
   removeItem(id) {
-    cart = cart.filter((item) => item.id !== id);
+    cart = cart.filter((item) => item.id !== Number(id));
     // total price and cart items
     this.setCartValue(cart);
-
     // update storage :
     Storage.saveCart(cart);
+    // get add to carrt buttons => update text and disabled
+    this.getSingleButton(id);
+  }
+
+  getSingleButton(id) {
+    const button = buttonsDOM.find(
+      (btn) => Number(btn.dataset.id) === Number(id)
+    );
+    button.innerText = "add to cart";
+    button.disabled = false;
   }
 }
 
