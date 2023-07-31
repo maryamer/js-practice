@@ -193,12 +193,12 @@ body {
   align-items: center;
   justify-content: center;
 }
-.fa-angle-up {
+.fa-chevron-up {
   color: var(--primaryColor);
   font-weight: bold;
   cursor: pointer;
 }
-.fa-angle-down {
+.fa-chevron-down {
   color: var(--mainRed);
   font-weight: bold;
   cursor: pointer;

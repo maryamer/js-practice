@@ -101,16 +101,16 @@ class UI {
     />
     <div class="cart-item-desc">
       <p class="item-title">${cartItem.title}</p>
-      <p>${cartItem.price * cartItem.quantity}</p>
+      <p>${(cartItem.price * cartItem.quantity).toFixed(2)}</p>
     </div>
     <div class="flex-column-center cart-item-controller">
-      <div>
-        <i class="fas fa-angle-up" data-id=${cartItem.id}></i>
-      </div>
+
+        <i class="fas fa-chevron-up" data-id=${cartItem.id}></i>
+
       <div sclass="flex-row-center">${cartItem.quantity}</div>
-      <div class>
-        <i class="fas fa-angle-down" data-id=${cartItem.id}></i>
-      </div>
+
+        <i class="fas fa-chevron-down" data-id=${cartItem.id}></i>
+
     </div>
     <div class="flex-column-center">
       <i class="far fa-trash-alt" data-id=${cartItem.id} ></i>
@@ -129,6 +129,24 @@ class UI {
   cartLogic() {
     // clear cart
     clearCart.addEventListener("click", () => this.clearCart());
+    cartContent.addEventListener("click", (event) => {
+      const id = event.target.dataset.id;
+      const targetClass = event.target.classList;
+      if (targetClass.contains("fa-chevron-up")) {
+        // console.log(id);
+        const addQuantity = event.target;
+        // get item from cart
+        const addedItem = cart.find((item) => Number(item.id) === Number(id));
+        addedItem.quantity++;
+        // cart = [...cart, addedItem];
+        // update cart value
+        this.setCartValue(cart);
+        // save cart
+        Storage.saveCart(cart);
+        // update cart item in ui
+        addQuantity.nextElementSibling.innerText = addedItem.quantity;
+      }
+    });
   }
   clearCart() {
     cart.forEach((item) => this.removeItem(item.id));
