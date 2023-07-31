@@ -220,9 +220,11 @@ body {
 }
 .cart-item-confirm {
   background-color: #6c28d993;
+  cursor: pointer;
 }
 .clear-cart {
   border: 1px solid var(--primaryColor) !important;
+  cursor: pointer;
 }
 .fa-trash-alt {
   cursor: pointer;
