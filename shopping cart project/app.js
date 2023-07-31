@@ -201,7 +201,6 @@ class UI {
     // get add to carrt buttons => update text and disabled
     this.getSingleButton(id);
   }
-
   getSingleButton(id) {
     const button = buttonsDOM.find(
       (btn) => Number(btn.dataset.id) === Number(id)
