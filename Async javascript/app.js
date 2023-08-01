@@ -207,12 +207,28 @@ displayEpisodes = async () => {
   const courses = await enrolledCouses(user.email);
   // console.log(courses);
   const episodes = await getEpisodes(courses[0]);
-  console.log(episodes);
+  // console.log(episodes);
   return episodes;
 };
 displayEpisodes();
 
 // IIFE:
 (async () => {
-  console.log(await displayEpisodes());
+  // console.log(await displayEpisodes());
 })();
+
+//
+//
+//
+
+//  //event loop in JavaScript and node.js
+// call stack - event loop - Web Api
+
+console.log("first log");
+setTimeout(() => {
+  console.log("callback after 2sec");
+}, 1000);
+console.log("secound log");
+
+// javascrript engine : call stack +memory heap
+// heap => function or variable define
