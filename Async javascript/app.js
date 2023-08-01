@@ -143,21 +143,76 @@
 //
 // consume promises at the same time
 // not conected request at the same time
-const getPosts = new Promise((res, rej) => {
-  setTimeout(() => {
-    res(["post 1", "post 2", "post 3"]);
-  }, 1500);
-});
-const getCourses = new Promise((res, rej) => {
-  setTimeout(() => {
-    res(["course 1", "course 2", "course 3"]);
-  }, 1000);
-});
+// const getPosts = new Promise((res, rej) => {
+//   setTimeout(() => {
+//     res(["post 1", "post 2", "post 3"]);
+//   }, 1500);
+// });
+// const getCourses = new Promise((res, rej) => {
+//   setTimeout(() => {
+//     res(["course 1", "course 2", "course 3"]);
+//   }, 1000);
+// });
 
-Promise.all([getCourses, getPosts])
-  .then((res) => {
-    console.log(res);
-  })
-  .catch((err) => {
-    console.log(err.message);
+// Promise.all([getCourses, getPosts])
+//   .then((res) => {
+//     console.log(res);
+//   })
+//   .catch((err) => {
+//     console.log(err.message);
+//   });
+
+//
+//
+//
+
+// async await
+
+function loginUser(email, pass) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      // return { userEmail: email, userPass: pass };
+      res({ email: "maryamemail" });
+    }, 2000);
   });
+}
+function enrolledCouses(email) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(["react", "node", "next"]);
+    }, 1500);
+  });
+}
+function getEpisodes(courseTitle) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(["E01", "E02", "E03"]);
+    }, 1500);
+  });
+}
+
+// async function displayEpisodes() {
+//   const user = await loginUser("maryamemail");
+//   // console.log(user);
+//   const courses = await enrolledCouses(user.email);
+//   // console.log(courses);
+//   const episodes = await getEpisodes(courses[0]);
+//   console.log(episodes);
+//   return episodes;
+// }
+
+displayEpisodes = async () => {
+  const user = await loginUser("maryamemail");
+  // console.log(user);
+  const courses = await enrolledCouses(user.email);
+  // console.log(courses);
+  const episodes = await getEpisodes(courses[0]);
+  console.log(episodes);
+  return episodes;
+};
+displayEpisodes();
+
+// IIFE:
+(async () => {
+  console.log(await displayEpisodes());
+})();
