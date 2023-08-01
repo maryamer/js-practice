@@ -223,6 +223,7 @@ displayEpisodes();
 
 //  //event loop in JavaScript and node.js
 // call stack - event loop - Web Api
+// search kon js event loop visualized
 
 console.log("first log");
 setTimeout(() => {
@@ -232,3 +233,14 @@ console.log("secound log");
 
 // javascrript engine : call stack +memory heap
 // heap => function or variable define
+// call stack => execute or call function
+
+// web Api: global object => window
+// setTimeOut()
+// location
+// fetch
+// loalStorage
+// navigator
+// DOM Api => querySelector,...
+
+// window.setTimeout()
