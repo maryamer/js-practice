@@ -94,3 +94,47 @@ promise
   .catch((err) => {
     console.log(err.message);
   });
+
+function loginUser(email, pass) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      // return { userEmail: email, userPass: pass };
+      res({ email: "maryamemail" });
+    }, 2000);
+  });
+}
+function enrolledCouses(email) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(["react", "node", "next"]);
+    }, 1500);
+  });
+}
+function getEpisode(courseTitle) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      res(["E01", "E02", "E03"]);
+    }, 1500);
+  });
+}
+
+// loginUser("maryamemail", "maryampass")
+//   .then((data) => {
+//     return enrolledCouses(data.email);
+//   })
+//   .then((courses) => {
+//     console.log(courses);
+//     return getEpisode(courses[0]);
+//   })
+//   .then((ep) => {
+//     console.log(ep);
+//   })
+//   .catch((err) => {
+//     console.log(err.message);
+//   });
+
+loginUser("maryamemail", "maryampass")
+  .then((data) => enrolledCouses(data.email))
+  .then((courses) => getEpisode(courses[0]))
+  .then((ep) => console.log(ep))
+  .catch((err) => console.log(err.message));
