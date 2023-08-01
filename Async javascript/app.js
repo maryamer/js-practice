@@ -68,3 +68,29 @@ loginUser("myEMAIL", "mypassword", (userData) => {
 [].map(() => {});
 
 // callback hell
+
+//
+//
+//
+
+// promise:
+
+// create
+const promise = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    // if(x){
+    // resolve({email:'maryamemail'})
+    // }else{
+    reject(new Error("password is not defined"));
+    // }
+  }, 1000);
+});
+
+// consume
+promise
+  .then((data) => {
+    console.log(data);
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
