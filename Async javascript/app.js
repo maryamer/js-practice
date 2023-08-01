@@ -39,102 +39,125 @@
 // promise
 // async await
 
-function loginUser(email, pass, callback) {
-  setTimeout(() => {
-    // return { userEmail: email, userPass: pass };
-    callback({ userEmail: email, userPass: pass });
-  }, 2000);
-}
-function enrolledCouses(email, callback) {
-  setTimeout(() => {
-    callback(["react", "node", "next"]);
-  }, 1500);
-}
-function getEpisode(courseTitle, callback) {
-  setTimeout(() => {
-    callback(["E01", "E02", "E03"]);
-  }, 1000);
-}
+// function loginUser(email, pass, callback) {
+//   setTimeout(() => {
+//     // return { userEmail: email, userPass: pass };
+//     callback({ userEmail: email, userPass: pass });
+//   }, 2000);
+// }
+// function enrolledCouses(email, callback) {
+//   setTimeout(() => {
+//     callback(["react", "node", "next"]);
+//   }, 1500);
+// }
+// function getEpisode(courseTitle, callback) {
+//   setTimeout(() => {
+//     callback(["E01", "E02", "E03"]);
+//   }, 1000);
+// }
 
-loginUser("myEMAIL", "mypassword", (userData) => {
-  console.log(userData);
-  enrolledCouses(userData.email, (courses) => {
-    console.log(courses);
-    getEpisode(courses[0], (episodes) => {
-      console.log(episodes);
-    });
-  });
-});
-[].map(() => {});
-
-// callback hell
-
-//
-//
-//
-
-// promise:
-
-// create
-const promise = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    // if(x){
-    // resolve({email:'maryamemail'})
-    // }else{
-    reject(new Error("password is not defined"));
-    // }
-  }, 1000);
-});
-
-// consume
-promise
-  .then((data) => {
-    console.log(data);
-  })
-  .catch((err) => {
-    console.log(err.message);
-  });
-
-function loginUser(email, pass) {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      // return { userEmail: email, userPass: pass };
-      res({ email: "maryamemail" });
-    }, 2000);
-  });
-}
-function enrolledCouses(email) {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      res(["react", "node", "next"]);
-    }, 1500);
-  });
-}
-function getEpisode(courseTitle) {
-  return new Promise((res, rej) => {
-    setTimeout(() => {
-      res(["E01", "E02", "E03"]);
-    }, 1500);
-  });
-}
-
-// loginUser("maryamemail", "maryampass")
-//   .then((data) => {
-//     return enrolledCouses(data.email);
-//   })
-//   .then((courses) => {
+// loginUser("myEMAIL", "mypassword", (userData) => {
+//   console.log(userData);
+//   enrolledCouses(userData.email, (courses) => {
 //     console.log(courses);
-//     return getEpisode(courses[0]);
-//   })
-//   .then((ep) => {
-//     console.log(ep);
+//     getEpisode(courses[0], (episodes) => {
+//       console.log(episodes);
+//     });
+//   });
+// });
+// [].map(() => {});
+
+// // callback hell
+
+// //
+// //
+// //
+
+// // promise:
+
+// // create
+// const promise = new Promise((resolve, reject) => {
+//   setTimeout(() => {
+//     // if(x){
+//     // resolve({email:'maryamemail'})
+//     // }else{
+//     reject(new Error("password is not defined"));
+//     // }
+//   }, 1000);
+// });
+
+// // consume
+// promise
+//   .then((data) => {
+//     console.log(data);
 //   })
 //   .catch((err) => {
 //     console.log(err.message);
 //   });
 
-loginUser("maryamemail", "maryampass")
-  .then((data) => enrolledCouses(data.email))
-  .then((courses) => getEpisode(courses[0]))
-  .then((ep) => console.log(ep))
-  .catch((err) => console.log(err.message));
+// function loginUser(email, pass) {
+//   return new Promise((res, rej) => {
+//     setTimeout(() => {
+//       // return { userEmail: email, userPass: pass };
+//       res({ email: "maryamemail" });
+//     }, 2000);
+//   });
+// }
+// function enrolledCouses(email) {
+//   return new Promise((res, rej) => {
+//     setTimeout(() => {
+//       res(["react", "node", "next"]);
+//     }, 1500);
+//   });
+// }
+// function getEpisode(courseTitle) {
+//   return new Promise((res, rej) => {
+//     setTimeout(() => {
+//       res(["E01", "E02", "E03"]);
+//     }, 1500);
+//   });
+// }
+
+// // loginUser("maryamemail", "maryampass")
+// //   .then((data) => {
+// //     return enrolledCouses(data.email);
+// //   })
+// //   .then((courses) => {
+// //     console.log(courses);
+// //     return getEpisode(courses[0]);
+// //   })
+// //   .then((ep) => {
+// //     console.log(ep);
+// //   })
+// //   .catch((err) => {
+// //     console.log(err.message);
+// //   });
+
+// loginUser("maryamemail", "maryampass")
+//   .then((data) => enrolledCouses(data.email))
+//   .then((courses) => getEpisode(courses[0]))
+//   .then((ep) => console.log(ep))
+//   .catch((err) => console.log(err.message));
+
+//
+//
+// consume promises at the same time
+// not conected request at the same time
+const getPosts = new Promise((res, rej) => {
+  setTimeout(() => {
+    res(["post 1", "post 2", "post 3"]);
+  }, 1500);
+});
+const getCourses = new Promise((res, rej) => {
+  setTimeout(() => {
+    res(["course 1", "course 2", "course 3"]);
+  }, 1000);
+});
+
+Promise.all([getCourses, getPosts])
+  .then((res) => {
+    console.log(res);
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
