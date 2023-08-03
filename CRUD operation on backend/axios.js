@@ -10,6 +10,7 @@ updateDataBtn.addEventListener("click", updateUser);
 
 const app = axios.create({
   baseURL: "https://reqres.in/api",
+  withCredentials: true,
 });
 
 // req => ok -Nok
@@ -93,8 +94,13 @@ async function postUser() {
 // put - patch and delete methods
 
 async function deleteUser() {
+  const token = "revobnl";
   try {
-    const res = await app.delete("/users/1");
+    const res = await app.delete("/users/1", {
+      headers: {
+        Authorization: `Breaer ${token}`,
+      },
+    });
     if (res) {
       console.log(res);
     } else {
@@ -131,3 +137,13 @@ async function updateUser() {
 //
 //
 //
+
+// set header in request
+
+// role => admin , user, seo, ...
+// token => admin,..
+// http-only cookie => not access from browser and front
+// withCredentials: true => send to backend http-only cookies to backend
+
+// authontication => who are you?
+// authorization => premmision of the user
