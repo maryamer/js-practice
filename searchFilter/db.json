@@ -16,15 +16,15 @@
         },
         {
             "id":3,
-            "title":"watch product3",
-            "class":"watch",
+            "title":"shirt product3",
+            "class":"shirt",
             "price":10.99,
             "image":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
         },
         {
             "id":4,
-            "title":"watch product4",
-            "class":"watch",
+            "title":"gown product4",
+            "class":"gown",
             "price":10.99,
             "image":"https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg"
         },

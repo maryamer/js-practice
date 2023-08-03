@@ -1,3 +1,7 @@
 body {
   background-color: rgb(67, 66, 66);
 }
+a {
+  color: wheat;
+  font-size: large;
+}
