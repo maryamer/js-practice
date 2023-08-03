@@ -4,10 +4,29 @@ const postDataBtn = document.querySelector(".post-data");
 getDataBtn.addEventListener("click", getUsers);
 postDataBtn.addEventListener("click", postUser);
 
+const app = axios.create({
+  baseURL: "https://reqres.in/api",
+});
+
+// req => ok -Nok
+// res => ok -Nok
+app.interceptors.request.use(
+  (config) => config,
+  (error) => Promise.reject(error)
+);
+app.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 //  axios
 // async await with try catch
 async function getUsers() {
-  const res = await axios.get("https://reqres.in/api/users");
+  const res = await app.get("/users");
   if (res) {
     console.log(res.data.data);
   } else {
@@ -20,7 +39,7 @@ async function postUser() {
       email: "eve.holt@reqres.in",
       password: "cityslicka",
     };
-    const res = await axios.post("https://reqres.in/api/login", user);
+    const res = await app.post("/login", user);
     if (res) {
       console.log(res.data);
     } else {
@@ -33,8 +52,8 @@ async function postUser() {
 
 // then catch
 // function getUsers() {
-//   axios
-//     .get("https://reqres.in/api/users")
+//   app
+//     .get("/users")
 //     .then(({ data }) => console.log(data.data))
 //     .catch((err) => console.log(err));
 // }
@@ -43,8 +62,13 @@ async function postUser() {
 //     email: "eve.holt@reqres.in",
 //     // password: "cityslicka",
 //   };
-//   axios
-//     .post("https://reqres.in/api/login", user)
+//   app
+//     .post("/login", user)
 //     .then(({ data }) => console.log(data))
 //     .catch((err) => console.log(err.response.data.error));
 // }
+
+//
+//
+//
+// config axios
