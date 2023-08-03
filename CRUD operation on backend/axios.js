@@ -1,8 +1,12 @@
 const getDataBtn = document.querySelector(".get-data");
 const postDataBtn = document.querySelector(".post-data");
+const deleteDataBtn = document.querySelector(".delete-data");
+const updateDataBtn = document.querySelector(".update-data");
 
 getDataBtn.addEventListener("click", getUsers);
 postDataBtn.addEventListener("click", postUser);
+deleteDataBtn.addEventListener("click", deleteUser);
+updateDataBtn.addEventListener("click", updateUser);
 
 const app = axios.create({
   baseURL: "https://reqres.in/api",
@@ -22,6 +26,14 @@ app.interceptors.response.use(
     return Promise.reject(error);
   }
 );
+
+// 2xx => ok
+// 4xx => front error
+// 400 => bad request => email or pass wrong xxx
+// 401 => unAuthorized
+// 403 => access error - tahrim
+// 404 => not found
+// 5xx => backend error- server error
 
 //  axios
 // async await with try catch
@@ -72,3 +84,50 @@ async function postUser() {
 //
 //
 // config axios
+
+//
+//
+//
+//
+
+// put - patch and delete methods
+
+async function deleteUser() {
+  try {
+    const res = await app.delete("/users/1");
+    if (res) {
+      console.log(res);
+    } else {
+      throw new Error();
+    }
+  } catch (error) {
+    console.log(error.response.data.error);
+  }
+}
+
+// put vs patch =>
+// patch => partial update(name,email) <= recomended
+// patch : if id exist => update . else => error
+// put => full update => all data should be appended
+// put : if id exist => update . else => create.
+
+async function updateUser() {
+  const user = {
+    name: "maryam",
+    email: "maryemail",
+  };
+  try {
+    const res = await app.patch("/users/3", user);
+    if (res) {
+      console.log(res);
+    } else {
+      throw new Error();
+    }
+  } catch (error) {
+    console.log(error.response.data.error);
+  }
+}
+
+//
+//
+//
