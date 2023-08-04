@@ -23,8 +23,21 @@ function router(params) {
       isMatch: true,
     };
   }
+  //   console.log(match.route.view());
 }
 
+// 2. push user to new url
+function navigateTo(url) {
+  history.pushState(null, null, [url]);
+  router();
+}
+window.addEventListener("popstate", router);
 document.addEventListener("DOMContentLoaded", () => {
+  document.body.addEventListener("click", (e) => {
+    if (e.target.hasAttribute("data-link")) {
+      e.preventDefault();
+      navigateTo(e.target.href);
+    }
+  });
   router();
 });
