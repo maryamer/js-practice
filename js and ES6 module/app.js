@@ -1,7 +1,4 @@
-const utils = require("./utils");
-console.log(utils());
-// returns exports object
-// console.log(utils.fetchApi());
+import fetchApi, { userName as myUser } from "./utils.js";
 
-// npm i browserify
-// browserify app.js > bundle.js
+fetchApi();
+console.log(myUser);

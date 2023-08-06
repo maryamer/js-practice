@@ -1,15 +1,8 @@
-const userName = "maryam";
+export const userName = "maryam";
 
-function fetchApi() {
+export default function fetchApi() {
   console.log("fetch");
 }
-// module.exports.userName = userName;
-// module.exports.fetchApi = fetchApi;
 
-// module.exports={
-//   userName,
-//   fetchApi
-// }
-
-module.exports = fetchApi;
-console.log(module);
+// named export
+// default export
