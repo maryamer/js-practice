@@ -18,13 +18,11 @@ const notes = [
     updated: "2021-11-01T10:47:26.889Z",
   },
 ];
-
+// localStorage.setItem("notes-app", JSON.stringify(notes));
 // get save and delete notes class
 export default class NotesApi {
   static getAllNotes() {
     // const saveNotes = notes || [];
-
-    console.log("hi");
     const saveNotes = JSON.parse(localStorage.getItem("notes-app")) || [];
     return saveNotes.sort((a, b) => {
       return new Date(b.updated) - new Date(a.updated);

@@ -6,9 +6,14 @@ const app = document.getElementById("app");
 
 const view = new NotesView(app, {
   onNoteAdd() {
-    console.log("note has been added");
+    // console.log("note has been added");
   },
   onNoteEdit(newTitle, newBody) {
-    console.log(newTitle, newBody);
+    // console.log(newTitle, newBody);
+  },
+  onNoteSelect(noteId) {
+    console.log(noteId);
   },
 });
+
+view.updateNoteList(NotesAPI.getAllNotes());
