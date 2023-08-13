@@ -9,14 +9,23 @@ export default class App {
     this._refreshNotes();
   }
   _refreshNotes() {
+    const notes = NotesApi.getAllNotes();
     // // set notes:
-    this.notes = NotesApi.getAllNotes();
-    // add noteList items to dom
-    this.view.updateNoteList(this.notes);
-    this.view.updateNotePreviewVisibility(this.notes.length > 0);
+    this._setNotes(notes);
     // // set active note:
-    this.activeNote = this.notes[0];
-    this.view.updateActiveNote(this.notes[0]);
+    if (this.notes.length > 0) {
+      this._setActiveNotes(notes[0]);
+    }
+  }
+  _setNotes(notes) {
+    this.notes = notes;
+    // add noteList items to dom
+    this.view.updateNoteList(notes);
+    this.view.updateNotePreviewVisibility(notes.length > 0);
+  }
+  _setActiveNotes(note) {
+    this.activeNote = note;
+    this.view.updateActiveNote(note);
   }
   _handlers() {
     return {
@@ -40,11 +49,11 @@ export default class App {
         console.log(noteId);
         // select => selected class add, title , body => preview update
         const selectedNote = this.notes.find((item) => item.id == noteId);
-        this.activeNote = selectedNote;
-        this.view.updateActiveNote(selectedNote);
+        this._setActiveNotes(selectedNote);
       },
       onNoteDelete: (noteId) => {
-        console.log(noteId);
+        NotesApi.deleteNote(noteId);
+        this._refreshNotes();
       },
     };
   }

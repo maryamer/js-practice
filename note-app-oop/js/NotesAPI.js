@@ -46,20 +46,8 @@ export default class NotesApi {
   }
   static deleteNote(id) {
     const notes = NotesApi.getAllNotes();
-    const filteredNotes = notes.filter((n) => n.id !== id);
+    const filteredNotes = notes.filter((n) => n.id != id);
     localStorage.setItem("notes-app", JSON.stringify(filteredNotes));
     return NotesApi.getAllNotes();
   }
 }
-
-// console.log(NotesApi.getAllNotes());
-// console.log(
-//   NotesApi.saveNote({
-//     id: 4,
-//     title: "third note updated",
-//     body: "this is third note",
-//     updated: "2021-11-01T10:47:26.889Z",
-//   })
-// );
-// console.log(NotesApi.getAllNotes());
-// console.log(NotesApi.deleteNote(1691329312014));

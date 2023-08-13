@@ -51,6 +51,7 @@ export default class NotesView {
   </div>`;
   }
   updateNoteList(notes) {
+    console.log(notes);
     const notesContainer = this.root.querySelector(".notes__list");
     // empty noteslist
     let notesList = "";
