@@ -67,9 +67,10 @@ export default class NotesView {
     notesContainer
       .querySelectorAll(".notes__list-trash")
       .forEach((noteItem) => {
-        noteItem.addEventListener("click", () =>
-          this.onNoteDelete(noteItem.dataset.noteId)
-        );
+        noteItem.addEventListener("click", (e) => {
+          e.stopPropagation();
+          this.onNoteDelete(noteItem.dataset.noteId);
+        });
       });
   }
 }
