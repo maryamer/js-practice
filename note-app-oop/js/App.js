@@ -29,7 +29,12 @@ export default class App {
         this._refreshNotes();
       },
       onNoteEdit: (newTitle, newBody) => {
-        // console.log(newTitle, newBody);
+        NotesApi.saveNote({
+          id: this.activeNote.id,
+          title: newTitle,
+          body: newBody,
+        });
+        this._refreshNotes();
       },
       onNoteSelect: (noteId) => {
         console.log(noteId);
