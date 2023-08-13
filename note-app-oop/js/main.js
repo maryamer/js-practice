@@ -13,6 +13,8 @@ const view = new NotesView(app, {
   },
   onNoteSelect(noteId) {
     console.log(noteId);
+    // select => selected class add, title , body => preview update
+    // view.updateActiveNote(note)
   },
   onNoteDelete(noteId) {
     console.log(noteId);
@@ -20,3 +22,4 @@ const view = new NotesView(app, {
 });
 
 view.updateNoteList(NotesAPI.getAllNotes());
+view.updateActiveNote(NotesAPI.getAllNotes()[2]);

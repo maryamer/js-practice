@@ -29,7 +29,9 @@ export default class NotesView {
         onNoteEdit(newTitle, newBody);
       })
     );
+    this.updateNotePreviewVisibility(false);
   }
+  // hide notes preview in first loading
   _createListItemHTML(id, title, body, updated) {
     const MAX_BODY_LENGTH = 50;
     return `
@@ -72,5 +74,21 @@ export default class NotesView {
           this.onNoteDelete(noteItem.dataset.noteId);
         });
       });
+  }
+  updateActiveNote(note) {
+    this.root.querySelector(".notes__title").value = note.title;
+    this.root.querySelector(".notes__body").value = note.body;
+    // add selected class :
+    this.root.querySelectorAll(".notes__list-item").forEach((item) => {
+      item.classList.remove("notes__list-item--selected");
+    });
+    this.root
+      .querySelector(`.notes__list-item[data-note-id="${note.id}"]`)
+      .classList.add("notes__list-item--selected");
+  }
+  updateNotePreviewVisibility(visible) {
+    this.root.querySelector(".notes__preview").style.visibility = visible
+      ? "visible"
+      : "hidden";
   }
 }
