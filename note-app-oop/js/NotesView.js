@@ -29,7 +29,7 @@ export default class NotesView {
         onNoteEdit(newTitle, newBody);
       })
     );
-    this.updateNotePreviewVisibility(false);
+    // this.updateNotePreviewVisibility(false);
   }
   // hide notes preview in first loading
   _createListItemHTML(id, title, body, updated) {
